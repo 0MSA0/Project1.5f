@@ -314,3 +314,10 @@ class LCD_1inch28(framebuf.FrameBuffer):
         self.cs(0)
         self.spi.write(self.buffer)
         self.cs(1)
+
+    def draw_filled_circle(self, center_x: int, center_y: int, radius: int, color: int) -> None:
+        for y in range(-radius, radius + 1):
+            x_extent = int((radius**2 - y**2)**0.5)
+            x1 = center_x - x_extent
+            x2 = center_x + x_extent
+            self.line(x1, center_y + y, x2, center_y + y, color)
