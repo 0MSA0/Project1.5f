@@ -70,8 +70,8 @@ def draw_pay_screen(lcd: LCD_1inch28, center_x: int, center_y: int):
                 lcd.rect(x, y, pixel_size, pixel_size, 0)
     guthabentext = "Guthaben: 4,20"
     bezahltext = "Bezahlen"
-    lcd.text(guthabentext,(120 - len(guthabentext)*4),60)
-    lcd.text(bezahltext, 120 - len(bezahltext)*4,180)
+    lcd.text(guthabentext, (120 - len(guthabentext) * 4), 60)
+    lcd.text(bezahltext, 120 - len(bezahltext) * 4, 180)
 
 
 def draw_qr_code(lcd: LCD_1inch28, start_x: int, start_y: int, size: int):
@@ -102,6 +102,25 @@ def draw_qr_code(lcd: LCD_1inch28, start_x: int, start_y: int, size: int):
             lcd.fill_rect(start_x + j * cell_size, start_y + i * cell_size, cell_size, cell_size, c)
 
 
+def draw_figure(lcd: LCD_1inch28, x_pos: int, y_pos: int):
+    lcd.draw_filled_circle((x_pos + 12), y_pos, 8, 1)
+    lcd.fill_rect((x_pos + 6), (y_pos + 10), 12, 50, 1)
+    lcd.fill_rect(x_pos, (y_pos + 20), 25, 20, 1)
+
+
+def draw_queue(lcd: LCD_1inch28):
+    x_start = 60
+    y_start = 160
+    lcd.text("Stand:", x_start, y_start)
+    lcd.text("Wartezeit:", x_start, (y_start + 20))
+    lcd.text("XYZ", (x_start + 85), y_start)
+    lcd.text("7 min", (x_start + 85), (y_start + 20))
+    draw_figure(lcd, 50, 78)
+    draw_figure(lcd, 80, 68)
+    draw_figure(lcd, 110, 58)
+    draw_figure(lcd, 140, 48)
+
+
 if __name__ == '__main__':
     # Display init
     LCD = LCD_1inch28()
@@ -124,6 +143,6 @@ if __name__ == '__main__':
         time.sleep(5)
         # Screen 3
         draw_base_screen(LCD, circle_radius)
-        LCD.text("Screen 3", 120, 120, 0x0)
+        draw_queue(LCD)
         LCD.show()
         time.sleep(5)
