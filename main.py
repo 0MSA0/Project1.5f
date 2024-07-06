@@ -7,9 +7,9 @@ from lib.PinDefines import Vbat_Pin
 from lib.QMI8658 import QMI8658
 
 
-def draw_base_screen(lcd: LCD_1inch28, r: int):
+def draw_base_screen(lcd: LCD_1inch28, r: int, c: int = 0xf800):
     # Draw background for all screens
-    lcd.fill(lcd.blue)
+    lcd.fill(c)
     lcd.draw_filled_circle(120, 120, r, lcd.white)
 
 
@@ -132,7 +132,7 @@ if __name__ == '__main__':
 
     while True:
         # Screen 1
-        draw_base_screen(LCD, circle_radius)
+        draw_base_screen(LCD, circle_radius, LCD.red)
         draw_pay_screen(LCD, 120, 120)
         LCD.show()
         time.sleep(5)
@@ -142,7 +142,7 @@ if __name__ == '__main__':
         LCD.show()
         time.sleep(5)
         # Screen 3
-        draw_base_screen(LCD, circle_radius)
+        draw_base_screen(LCD, circle_radius, LCD.green)
         draw_queue(LCD)
         LCD.show()
         time.sleep(5)
