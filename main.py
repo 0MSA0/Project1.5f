@@ -68,6 +68,10 @@ def draw_pay_screen(lcd: LCD_1inch28, center_x: int, center_y: int):
                 x = center_x - (pay_width * pixel_size) // 2 + col * pixel_size
                 y = center_y - (pay_height * pixel_size) // 2 + row * pixel_size
                 lcd.rect(x, y, pixel_size, pixel_size, 0)
+    guthabentext = "Guthaben: 4,20"
+    bezahltext = "Bezahlen"
+    lcd.text(guthabentext,(120 - len(guthabentext)*4),60)
+    lcd.text(bezahltext, 120 - len(bezahltext)*4,180)
 
 
 def draw_qr_code(lcd: LCD_1inch28, start_x: int, start_y: int, size: int):
